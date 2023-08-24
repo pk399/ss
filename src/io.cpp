@@ -1,29 +1,9 @@
 #include <stdio.h>
-#include <math.h>
 
-#include "ss.h"
-#include "ss_main.h"
-#include "ss_testing.h"
+#include "io.h"
 
-
-int main(void)
+void PrintResult(int n_roots, double x1, double x2)
 {
-    // run_tests()
-    // test_square( 1, 2, 1, -1, -1);
-    //
-    RunTestsFromFile("ss_tests.txt");
-
-    printf("# This program solves square equations in real numbers\n");
-    printf("# Enter the values for coefficients a, b and c:\n");
-
-    double a = NAN, b = NAN, c = NAN;
-
-    ScanCoefficients(&a, &b, &c);
-
-    double x1 = NAN,x2 = NAN;
-    int n_roots = SolveSquare(a, b, c, &x1, &x2);
-
-    // print roots function
     switch (n_roots)
     {
         case NO_ROOTS:
@@ -46,10 +26,7 @@ int main(void)
 
         default:
             dbg_printf("Reached default case!\n");
-            return 1;
     }
-
-    return 0;
 }
 
 
@@ -68,3 +45,4 @@ void ClearBuffer(void)
     while (getchar() != '\n')
         continue;
 }
+
