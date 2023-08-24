@@ -24,33 +24,32 @@ char* to_str(int num_of_roots)
             return "infinite roots";
 
         default:
-           dbg_printf("Reached default case!\n");
+            dbg_printf("Reached default case!\n");
     }
 }
 
 
 int TestSquare(int test_number, const TestInput* test_ref)
 {
-    double x1 = NAN, x2 = NAN;
+    double x1 = NAN;
+    double x2 = NAN;
     int n_roots = SolveSquare(test_ref->a, test_ref->b,
                               test_ref->c, &x1, &x2);
 
-    if ( test_ref->n_roots != n_roots ||
+    if (test_ref->n_roots != n_roots ||
          ( (test_ref->n_roots > 0) && !DoubleEq(test_ref->x1, x1) ) ||
          ( (test_ref->n_roots > 1) && !DoubleEq(test_ref->x2, x2) ) )
     {
-        printf("a=%.2f, b=%.2f, c=%.2f - Failure!\n",
-               test_ref->a, test_ref->b, test_ref->c);
-
-        printf("\tTest #%d\n", test_number);
-
-        printf("\tExpected %s, but got %s\n",
-                to_str(test_ref->n_roots), to_str(n_roots));
-
-        printf("\tExpected x1 = %.3f, got %.3f\n", test_ref->x1, x1);
-
-        printf("\tExpected x2 = %.3f, got %.3f\n", test_ref->x2, x2);
-
+        printf("a=%.2f, b=%.2f, c=%.2f - Failure!\n"
+               "\tTest #%d\n"
+               "\tExpected %s, but got %s\n"
+               "\tExpected x1 = %.3f, got %.3f\n"
+               "\tExpected x2 = %.3f, got %.3f\n",
+               test_ref->a, test_ref->b, test_ref->c,
+               test_number,
+               to_str(test_ref->n_roots), to_str(n_roots),
+               test_ref->x1, x1,
+               test_ref->x2, x2);
         return 1;
     }
 
@@ -80,14 +79,16 @@ void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size)
     {
         TestInput test_input = {NAN, NAN, NAN, INF_ROOTS, NAN, NAN};
 
-        fscanf(tests_file, "%lf %lf %lf %d", &test_input.a, &test_input.b, &test_input.c,
-               &test_input.n_roots);
+        fscanf(tests_file,
+               "%lf %lf %lf %d",
+               &test_input.a, &test_input.b, &test_input.c, &test_input.n_roots);
         FileScanDoubleOrNaN(tests_file, &test_input.x1);
         FileScanDoubleOrNaN(tests_file, &test_input.x2);
 
         test_inputs[i] = test_input;
     }
 }
+
 
 int RunTestsFromFile(char path[])
 {
@@ -98,16 +99,14 @@ int RunTestsFromFile(char path[])
     if (tests_file == NULL)
     {
         printf("%s: ERROR: Can't open file with tests\n", __PRETTY_FUNCTION__);
-        return 0;
+        return -1;
     }
 
     int n = 0;
     fscanf(tests_file, "%d", &n);
-
     TestInput* test_inputs = (TestInput*) malloc(n * sizeof(TestInput));
 
     ParseTests(tests_file, test_inputs, n);
-    fclose(tests_file);
 
     int failed_tests = 0;
 
@@ -116,7 +115,6 @@ int RunTestsFromFile(char path[])
         failed_tests += TestSquare(i+1, &test_inputs[i]);
     }
 
-    free(test_inputs);
 
     if (failed_tests == 0)
     {
@@ -126,6 +124,9 @@ int RunTestsFromFile(char path[])
     {
         printf("Tests failed: %d\n", failed_tests);
     }
+
+    fclose(tests_file);
+    free(test_inputs);
 
     return failed_tests;
 }
