@@ -1,6 +1,8 @@
 #include <stdio.h>
 
+#include "ss.h"
 #include "io.h"
+#include "ss_testing.h"
 
 
 void PrintResult(int n_roots, double x1, double x2)
