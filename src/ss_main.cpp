@@ -19,23 +19,7 @@ int main(void)
     double a = NAN, b = NAN, c = NAN;
     int result = 0;
 
-    while (1)
-    {
-        result = scanf("%lf%lf%lf", &a, &b, &c);
-
-        // while( scanf(...) != 3 )
-        if (result == 3)
-        {
-            break;
-        }
-        else
-        {
-            printf("# Incorrect input\n");
-            // clear_buffer();
-            //while (getchar() != '\n') {}
-            ClearBuffer();
-        }
-    }
+    ScanCoefficients(&a, &b, &c);
 
     //double roots[]
     double x1 = NAN,x2 = NAN;
@@ -69,6 +53,16 @@ int main(void)
     }
 
     return 0;
+}
+
+
+void ScanCoefficients(double* a, double* b, double* c)
+{
+    while(scanf("%lf%lf%lf", a, b, c) != 3)
+    {
+        printf("# Incorrect input\n");
+        ClearBuffer();
+    }
 }
 
 
