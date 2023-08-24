@@ -1,7 +1,5 @@
-
 const int BIG_NUM = 100;
-// useless
-// Removed this -> const char NAN_STR[] = "nan";
+
 
 struct TestInput
 {
@@ -14,7 +12,6 @@ struct TestInput
 };
 
 
-// Testing
 void FileScanDoubleOrNaN(FILE* file, double* n);
 
 int TestSquare(int test_number, TestInput test_input);
@@ -25,5 +22,3 @@ int RunTestsFromFile(char path[]);
 #define dbg_printf(str) \
     printf("Failed in function %s:%d\n", __PRETTY_FUNCTION__, __LINE__); \
     printf(str)
-
-//dbg_printf("Error");

@@ -17,9 +17,29 @@ int main(void)
     printf("# Enter the values for coefficients a, b and c:\n");
 
     double a = NAN, b = NAN, c = NAN;
+    int result = 0;
 
     ScanCoefficients(&a, &b, &c);
 
+    while (1)
+    {
+        result = scanf("%lf%lf%lf", &a, &b, &c);
+
+        // while( scanf(...) != 3 )
+        if (result == 3)
+        {
+            break;
+        }
+        else
+        {
+            printf("# Incorrect input\n");
+            // clear_buffer();
+            //while (getchar() != '\n') {}
+            ClearBuffer();
+        }
+    }
+
+    //double roots[]
     double x1 = NAN,x2 = NAN;
     int n_roots = SolveSquare(a, b, c, &x1, &x2);
 
@@ -45,7 +65,8 @@ int main(void)
             break;
 
         default:
-            dbg_printf("Reached default case!\n");
+            //PrintIllegalNRootsValue("main", n_roots);
+            dbg_printf("Reached default case!!!!\n");
             return 1;
     }
 
@@ -57,8 +78,7 @@ void ScanCoefficients(double* a, double* b, double* c)
 {
     while(scanf("%lf%lf%lf", a, b, c) != 3)
     {
-        printf("# Incorrect input\n");
-        ClearBuffer();
+        
     }
 }
 

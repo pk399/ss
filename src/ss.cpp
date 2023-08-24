@@ -27,6 +27,7 @@ int SolveLinear(const double a, const double b, double* x)
 
     assert(x != NULL);
 
+
     if (IsDoubleZero(a))
     {
         return IsDoubleZero(b) ? INF_ROOTS : NO_ROOTS;
@@ -48,6 +49,7 @@ int SolveSquare(const double a, const double b, const double c,
     assert(x1 != NULL);
     assert(x2 != NULL);
     assert(x1 != x2);
+
 
     if (IsDoubleZero(a))
     {
