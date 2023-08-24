@@ -2,6 +2,7 @@
 
 #include "io.h"
 
+
 void PrintResult(int n_roots, double x1, double x2)
 {
     switch (n_roots)
