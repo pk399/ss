@@ -16,7 +16,9 @@ void FileScanDoubleOrNaN(FILE* file, double* n);
 
 int TestSquare(int test_number, TestInput test_input);
 void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size);
-int RunTestsFromFile(char path[]);
+int RunTestsFromFile(const char path[]);
+
+const char* to_str(int n_roots);
 
 
 #define dbg_printf(str) \

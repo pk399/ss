@@ -7,9 +7,9 @@
 #include "ss_testing.h"
 
 
-char* to_str(int num_of_roots)
+const char* to_str(int num_of_roots)
 {
-    switch( num_of_roots )
+    switch(num_of_roots)
     {
         case NO_ROOTS:
             return "no roots";
@@ -25,6 +25,7 @@ char* to_str(int num_of_roots)
 
         default:
             dbg_printf("Reached default case!\n");
+            return "default case";
     }
 }
 
@@ -89,8 +90,12 @@ void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size)
     }
 }
 
+// TODO
+// enum TestErrors
+// {
+//     FileOpenError = -1
 
-int RunTestsFromFile(char path[])
+int RunTestsFromFile(const char path[])
 {
     printf("Running tests from %s...\n", path);
 
