@@ -17,7 +17,7 @@ int main(void)
 
     ScanCoefficients(&a, &b, &c);
 
-    double x1 = NAN,x2 = NAN;
+    double x1 = NAN, x2 = NAN;
     int n_roots = SolveSquare(a, b, c, &x1, &x2);
 
     PrintResult(n_roots, x1, x2);
