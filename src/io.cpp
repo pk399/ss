@@ -45,7 +45,12 @@ void ScanCoefficients(double* a, double* b, double* c)
 
 void ClearBuffer(void)
 {
-    while (getchar() != '\n')
-        continue;
-}
+    int nextchar = EOF;
 
+    do
+    {
+        nextchar = getchar();
+    }
+    while (nextchar != '\n' &&
+           nextchar != EOF);
+}
