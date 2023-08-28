@@ -38,8 +38,9 @@ int TestSquare(int test_number, const TestInput* test_ref)
                               test_ref->c, &x1, &x2);
 
     if (test_ref->n_roots != n_roots ||
-         ( (test_ref->n_roots > 0) && !DoubleEq(test_ref->x1, x1) ) ||
-         ( (test_ref->n_roots > 1) && !DoubleEq(test_ref->x2, x2) ) )
+        ( test_ref->n_roots > 0 && !DoubleEq(test_ref->x1, x1) ) ||
+        ( test_ref->n_roots > 1 && !DoubleEq(test_ref->x2, x2) )
+       )
     {
         printf("a=%.2f, b=%.2f, c=%.2f - Failure!\n"
                "\tTest #%d\n"
@@ -51,6 +52,7 @@ int TestSquare(int test_number, const TestInput* test_ref)
                to_str(test_ref->n_roots), to_str(n_roots),
                test_ref->x1, x1,
                test_ref->x2, x2);
+
         return 1;
     }
 
@@ -60,7 +62,8 @@ int TestSquare(int test_number, const TestInput* test_ref)
 
 void FileScanDoubleOrNaN(FILE* file, double* n)
 {
-    char n_str[BIG_NUM] = "";
+    const int MAX_STRLEN = 256;
+    char n_str[MAX_STRLEN] = "";
     fscanf(file, "%s", n_str);
 
     if (strcmp(n_str, "nan") == 0)
@@ -90,10 +93,6 @@ void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size)
     }
 }
 
-// TODO
-// enum TestErrors
-// {
-//     FileOpenError = -1
 
 int RunTestsFromFile(const char path[])
 {
@@ -110,6 +109,13 @@ int RunTestsFromFile(const char path[])
     int n = 0;
     fscanf(tests_file, "%d", &n);
     TestInput* test_inputs = (TestInput*) malloc(n * sizeof(TestInput));
+
+    if (test_inputs == NULL)
+    {
+        printf("%s: ERROR: Can't allocate memory for tests\n", __PRETTY_FUNCTION__);
+        return -1;
+    }
+
 
     ParseTests(tests_file, test_inputs, n);
 
