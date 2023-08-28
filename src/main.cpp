@@ -10,11 +10,10 @@ int main(void)
 {
     RunTestsFromFile("ss_tests.txt");
 
-    printf("# This program solves square equations in real numbers\n");
-    printf("# Enter the values for coefficients a, b and c:\n");
+    printf("# This program solves square equations in real numbers\n"
+           "# Enter the values for coefficients a, b and c:\n");
 
     double a = NAN, b = NAN, c = NAN;
-
     ScanCoefficients(&a, &b, &c);
 
     double x1 = NAN, x2 = NAN;
