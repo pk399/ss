@@ -110,7 +110,7 @@ int RunTestsFromFile(const char path[])
 
     int n = 0;
     fscanf(tests_file, "%d", &n);
-    TestInput* test_inputs = (TestInput*) malloc(n * sizeof(TestInput));
+    TestInput* test_inputs = (TestInput*) calloc(n, sizeof(TestInput));
 
     if (test_inputs == NULL)
     {
