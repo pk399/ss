@@ -14,10 +14,10 @@ enum NUMBER_OF_ROOTS
 //! @return 1 if they are equal, 0 otherwise.
 //!
 //! @note Uses an epsilon defined in float.h: DBL_EPSILON.
-int DoubleEq(const double a, const double b);
+int DoubleEq(double a, double b);
 
 
-int IsDoubleZero(const double a);
+int IsDoubleZero(double a);
 
 //! @brief Rounds to 0 if close
 //!
@@ -25,7 +25,7 @@ int IsDoubleZero(const double a);
 //! @return 0 if close to it, a otherwise
 //!
 //! Used because a function can return -0, so round it
-double DoubleRoundIfZero(const double a);
+double DoubleRoundIfZero(double a);
 
 
 //! @brief Solves a linear equation.
@@ -37,7 +37,7 @@ double DoubleRoundIfZero(const double a);
 //!
 //! @warning If the equation has 0 or infinite solutions,
 //! x will not be touched.
-int SolveLinear(const double a, const double b, double* x);
+int SolveLinear(double a, double b, double* x);
 
 
 //! @brief Solves a quadratic equation.
@@ -53,5 +53,5 @@ int SolveLinear(const double a, const double b, double* x);
 //! some x's will not be touched:\n
 //! 0 and infinite solutions - x1 and x2,\n
 //! 1 solution - x2.
-int SolveSquare(const double a, const double b, const double c,
+int SolveSquare(double a, double b, double c,
                 double* x1, double* x2);
