@@ -6,7 +6,7 @@
 #include "ss.h"
 
 
-int DoubleEq(const double a, const double b)
+int DoubleEq(double a, double b)
 {
     assert(isfinite(a));
 
@@ -14,13 +14,13 @@ int DoubleEq(const double a, const double b)
 }
 
 
-int IsDoubleZero(const double a)
+int IsDoubleZero(double a)
 {
     return DoubleEq(a, 0.);
 }
 
 
-double DoubleRoundIfZero(const double a)
+double DoubleRoundIfZero(double a)
 {
     if (fabs(a) < DBL_EPSILON)
     {
@@ -30,7 +30,7 @@ double DoubleRoundIfZero(const double a)
     return a;
 }
 
-int SolveLinear(const double a, const double b, double* x)
+int SolveLinear(double a, double b, double* x)
 {
     assert(isfinite(a));
     assert(isfinite(b));
@@ -52,7 +52,7 @@ int SolveLinear(const double a, const double b, double* x)
 }
 
 
-int SolveSquare(const double a, const double b, const double c,
+int SolveSquare(double a, double b, double c,
                 double* x1, double* x2)
 {
     assert(isfinite(a));
