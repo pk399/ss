@@ -19,6 +19,14 @@ int DoubleEq(const double a, const double b);
 
 int IsDoubleZero(const double a);
 
+//! @brief Rounds to 0 if close
+//!
+//! @param [in] a Double value
+//! @return 0 if close to it, a otherwise
+//!
+//! Used because a function can return -0, so round it
+double DoubleRoundIfZero(const double a);
+
 
 //! @brief Solves a linear equation.
 //!
@@ -28,7 +36,7 @@ int IsDoubleZero(const double a);
 //! @return Number of roots.
 //!
 //! @warning If the equation has 0 or infinite solutions,
-//! x will not be touched
+//! x will not be touched.
 int SolveLinear(const double a, const double b, double* x);
 
 
