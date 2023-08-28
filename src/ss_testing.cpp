@@ -81,7 +81,9 @@ void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size)
 {
     for (int i = 0; i < test_inputs_size; i++)
     {
-        TestInput test_input = {NAN, NAN, NAN, INF_ROOTS, NAN, NAN};
+        TestInput test_input = {.a = NAN, .b = NAN, .c = NAN,
+                                .x1 = NAN, .x2 = NAN,
+                                .n_roots = INF_ROOTS};
 
         fscanf(tests_file,
                "%lf %lf %lf %d",
