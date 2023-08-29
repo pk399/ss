@@ -3,12 +3,17 @@
 
 #include "ss.h"
 #include "io.h"
-#include "ss_testing.h"
+
+#ifdef TESTS
+    #include "ss_testing.h"
+#endif
 
 
 int main(void)
 {
-    RunTestsFromFile("ss_tests.txt");
+    #ifdef TESTS
+        RunTestsFromFile("ss_tests.txt");
+    #endif
 
     printf("# This program solves square equations in real numbers\n"
            "# Enter the values for coefficients a, b and c:\n");
