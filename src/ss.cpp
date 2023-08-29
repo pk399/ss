@@ -9,6 +9,7 @@
 int DoubleEq(double a, double b)
 {
     assert(isfinite(a));
+    assert(isfinite(b));
 
     return fabs(a - b) < DBL_EPSILON;
 }
@@ -16,12 +17,15 @@ int DoubleEq(double a, double b)
 
 int IsDoubleZero(double a)
 {
+    assert(isfinite(a));
     return DoubleEq(a, 0.);
 }
 
 
 double DoubleRoundIfZero(double a)
 {
+    assert(isfinite(a));
+
     if (fabs(a) < DBL_EPSILON)
     {
         return 0;
