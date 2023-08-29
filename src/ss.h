@@ -1,9 +1,9 @@
 enum NUMBER_OF_ROOTS
 {
     INF_ROOTS = -1,
-    NO_ROOTS = 0,
-    ONE_ROOT = 1,
-    TWO_ROOTS = 2
+    NO_ROOTS  =  0,
+    ONE_ROOT  =  1,
+    TWO_ROOTS =  2
 };
 
 
