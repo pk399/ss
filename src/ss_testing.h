@@ -1,3 +1,8 @@
+#define dbg_printf(str) \
+    printf("Failed in function %s:%d\n", __PRETTY_FUNCTION__, __LINE__); \
+    printf(str)
+
+
 //! @brief Reference input for TestSquare.
 struct TestInput
 {
@@ -58,6 +63,3 @@ void ParseTests(FILE* tests_file, TestInput test_inputs[], int test_inputs_size)
 int RunTestsFromFile(const char path[]);
 
 
-#define dbg_printf(str) \
-    printf("Failed in function %s:%d\n", __PRETTY_FUNCTION__, __LINE__); \
-    printf(str)
